@@ -254,11 +254,31 @@ export function EquipmentPage({
   const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(
     null,
   );
+  const [filterCondition, setFilterCondition] = useState<
+    "all" | "new" | "good" | "used"
+  >("all");
+  const [sortBy, setSortBy] = useState<"price-low" | "price-high" | "rating">(
+    "rating",
+  );
 
-  const filteredItems =
+  let filteredItems =
     selectedCategory === "all"
       ? equipmentItems
       : equipmentItems.filter((item) => item.category === selectedCategory);
+
+  // Apply condition filter
+  if (filterCondition !== "all") {
+    filteredItems = filteredItems.filter(
+      (item) => item.condition === filterCondition,
+    );
+  }
+
+  // Apply sorting
+  filteredItems = [...filteredItems].sort((a, b) => {
+    if (sortBy === "price-low") return a.price - b.price;
+    if (sortBy === "price-high") return b.price - a.price;
+    return b.rating - a.rating;
+  });
 
   const handleAddToCart = (item: Equipment) => {
     if (!dateRange.from || !dateRange.to) {
@@ -300,28 +320,126 @@ export function EquipmentPage({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl mb-2">Équipement de randonnée</h1>
+        <h1 className="text-4xl font-bold mb-2">Équipement de randonnée</h1>
         <p className="text-gray-600">
-          Parcourez notre sélection d'équipements de qualité
+          Parcourez notre sélection d'équipements de qualité (
+          {filteredItems.length} articles)
         </p>
       </div>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {categories.map((category) => (
-          <Button
-            key={category.id}
-            variant={selectedCategory === category.id ? "default" : "outline"}
-            onClick={() => onCategoryChange(category.id)}
-            className={
-              selectedCategory === category.id
-                ? "bg-emerald-600 hover:bg-emerald-700"
-                : ""
-            }
-          >
-            {category.name}
-          </Button>
-        ))}
+      <div className="bg-white rounded-lg p-6 mb-8 shadow-sm border border-gray-200">
+        <h3 className="text-lg font-semibold mb-4">Catégories</h3>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? "default" : "outline"}
+              onClick={() => onCategoryChange(category.id)}
+              className={
+                selectedCategory === category.id
+                  ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+                  : "bg-white text-gray-700 hover:bg-gray-100"
+              }
+            >
+              {category.name}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {/* Filters Bar */}
+      <div className="bg-gradient-to-r from-gray-50 to-white rounded-lg p-6 mb-8 shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Condition Filter */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              État du matériel
+            </label>
+            <div className="space-y-2">
+              {[
+                { value: "all", label: "Tous les états" },
+                { value: "new", label: "Neuf" },
+                { value: "good", label: "Bon état" },
+                { value: "used", label: "Usagé" },
+              ].map((option) => (
+                <label
+                  key={option.value}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="condition"
+                    value={option.value}
+                    checked={filterCondition === option.value}
+                    onChange={(e) =>
+                      setFilterCondition(
+                        e.target.value as "all" | "new" | "good" | "used",
+                      )
+                    }
+                    className="w-4 h-4 text-emerald-600"
+                  />
+                  <span className="text-sm text-gray-700">{option.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Sort Filter */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Trier par
+            </label>
+            <div className="space-y-2">
+              {[
+                { value: "rating", label: "Meilleures notes" },
+                { value: "price-low", label: "Prix: moins cher" },
+                { value: "price-high", label: "Prix: plus cher" },
+              ].map((option) => (
+                <label
+                  key={option.value}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="sort"
+                    value={option.value}
+                    checked={
+                      sortBy ===
+                      (option.value as "price-low" | "price-high" | "rating")
+                    }
+                    onChange={(e) =>
+                      setSortBy(
+                        e.target.value as "price-low" | "price-high" | "rating",
+                      )
+                    }
+                    className="w-4 h-4 text-emerald-600"
+                  />
+                  <span className="text-sm text-gray-700">{option.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Results Info */}
+          <div className="flex items-end">
+            <div className="bg-emerald-50 rounded p-4 w-full border border-emerald-200">
+              <p className="text-2xl font-bold text-emerald-600">
+                {filteredItems.length}
+              </p>
+              <p className="text-sm text-emerald-700">articles disponibles</p>
+              {filterCondition !== "all" && (
+                <p className="text-xs text-emerald-600 mt-2">
+                  Filtrés par état:{" "}
+                  {
+                    getConditionBadge(filterCondition as Equipment["condition"])
+                      .label
+                  }
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Equipment Grid */}
