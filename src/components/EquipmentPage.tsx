@@ -302,8 +302,9 @@ export function EquipmentPage({
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">Équipement de randonnée</h1>
         <p className="text-gray-600">
-          Parcourez notre sélection d'équipements de qualité (
-          {filteredItems.length} articles trouvés)
+          {selectedCategory === "all"
+            ? `Parcourez notre sélection d'équipements de qualité (${filteredItems.length} articles trouvés)`
+            : `Catégorie: ${categories.find((c) => c.id === selectedCategory)?.name} (${filteredItems.length} articles trouvés)`}
         </p>
       </div>
 
