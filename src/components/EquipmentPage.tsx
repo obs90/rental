@@ -352,6 +352,9 @@ export function EquipmentPage({
               <img
                 src={item.photos?.[0] ?? ""}
                 alt={item.name}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="w-full h-full object-cover hover:scale-105 transition-transform"
               />
               <Badge
@@ -476,6 +479,9 @@ export function EquipmentPage({
                   <img
                     src={selectedEquipment.photos?.[0] ?? ""}
                     alt={selectedEquipment.name}
+                    loading="lazy"
+                    decoding="async"
+                    sizes="100vw"
                     className="w-full h-full object-cover"
                   />
                 </div>
