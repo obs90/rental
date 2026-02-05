@@ -37,7 +37,7 @@ interface Equipment {
   photos: string[];
   brand: string;
   available: boolean;
-  weight: number; // en kg
+  weight: number;
   condition: "new" | "good" | "used";
   description: string;
 }
