@@ -309,9 +309,7 @@ export function EquipmentPage({
 
       {/* Category Filter - Equipment Type Filter */}
       <div className="bg-white rounded-lg p-6 mb-8 shadow-sm border border-gray-200">
-        <h3 className="text-lg font-semibold mb-4">
-          Filtrer par type de matériel
-        </h3>
+        <h3 className="text-lg font-semibold mb-4">Filtrer par catégorie</h3>
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <Button
