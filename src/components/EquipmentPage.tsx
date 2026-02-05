@@ -34,7 +34,7 @@ interface Equipment {
   price: number;
   rating: number;
   reviews: number;
-  image: string;
+  photos: string[];
   brand: string;
   available: boolean;
   weight: number; // en kg
@@ -50,8 +50,9 @@ const equipmentItems: Equipment[] = [
     price: 15,
     rating: 4.8,
     reviews: 42,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1731082627921-77d00a9e5ab7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1waW5nJTIwdGVudCUyMG91dGRvb3J8ZW58MXx8fHwxNzY5Nzc2ODYxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "MSR",
     available: false,
     weight: 1.2,
@@ -66,8 +67,9 @@ const equipmentItems: Equipment[] = [
     price: 12,
     rating: 4.6,
     reviews: 38,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1669732536692-ea3af4f41b60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWtpbmclMjBiYWNrcGFjayUyMG1vdW50YWlufGVufDF8fHx8MTc2OTc3Njg2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Osprey",
     available: true,
     weight: 1.5,
@@ -82,8 +84,9 @@ const equipmentItems: Equipment[] = [
     price: 10,
     rating: 4.9,
     reviews: 56,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1559506026-181ed433f0b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWtpbmclMjBib290cyUyMHRyZWtraW5nfGVufDF8fHx8MTc2OTc3Njg2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Salomon",
     available: true,
     weight: 1.1,
@@ -98,8 +101,9 @@ const equipmentItems: Equipment[] = [
     price: 8,
     rating: 4.7,
     reviews: 31,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1685346051443-753b580fb2e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1waW5nJTIwc3RvdmUlMjBnYXN8ZW58MXx8fHwxNzY5Nzc2ODYxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Jetboil",
     available: true,
     weight: 0.4,
@@ -114,8 +118,9 @@ const equipmentItems: Equipment[] = [
     price: 5,
     rating: 4.5,
     reviews: 64,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1600201319330-e99245e614c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFkbGFtcCUyMGZsYXNobGlnaHQlMjBvdXRkb29yfGVufDF8fHx8MTc2OTc3Njg2Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Petzl",
     available: true,
     weight: 0.1,
@@ -130,8 +135,9 @@ const equipmentItems: Equipment[] = [
     price: 25,
     rating: 4.7,
     reviews: 28,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1731082627921-77d00a9e5ab7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYW1waW5nJTIwdGVudCUyMG91dGRvb3J8ZW58MXx8fHwxNzY5Nzc2ODYxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Coleman",
     available: true,
     weight: 5.2,
@@ -146,8 +152,9 @@ const equipmentItems: Equipment[] = [
     price: 18,
     rating: 4.8,
     reviews: 45,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1669732536692-ea3af4f41b60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWtpbmclMjBiYWNrcGFjayUyMG1vdW50YWlufGVufDF8fHx8MTc2OTc3Njg2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Deuter",
     available: true,
     weight: 2.3,
@@ -162,8 +169,9 @@ const equipmentItems: Equipment[] = [
     price: 6,
     rating: 4.6,
     reviews: 52,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1662109141645-55e2c004acff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmVra2luZyUyMHBvbGVzJTIwaGlraW5nfGVufDF8fHx8MTc2OTc3Njg2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Black Diamond",
     available: true,
     weight: 0.5,
@@ -178,8 +186,9 @@ const equipmentItems: Equipment[] = [
     price: 20,
     rating: 4.9,
     reviews: 73,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1734776579769-4fbfcdd12b6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncHMlMjB3YXRjaCUyMHNtYXJ0d2F0Y2h8ZW58MXx8fHwxNzY5Nzc2ODYyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Garmin",
     available: true,
     weight: 0.08,
@@ -194,8 +203,9 @@ const equipmentItems: Equipment[] = [
     price: 14,
     rating: 4.7,
     reviews: 39,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1618688961306-0fd4345a73b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbGVlcGluZyUyMGJhZyUyMGNhbXBpbmd8ZW58MXx8fHwxNzY5Nzc2ODYyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Marmot",
     available: true,
     weight: 1.8,
@@ -210,8 +220,9 @@ const equipmentItems: Equipment[] = [
     price: 7,
     rating: 4.4,
     reviews: 28,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1662109141645-55e2c004acff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmVra2luZyUyMHBvbGVzJTIwaGlraW5nfGVufDF8fHx8MTc2OTc3Njg2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "Leki",
     available: true,
     weight: 0.45,
@@ -226,8 +237,9 @@ const equipmentItems: Equipment[] = [
     price: 9,
     rating: 4.7,
     reviews: 61,
-    image:
+    photos: [
       "https://images.unsplash.com/photo-1559506026-181ed433f0b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWtpbmclMjBib290cyUyMHRyZWtraW5nfGVufDF8fHx8MTc2OTc3Njg2MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    ],
     brand: "La Sportiva",
     available: true,
     weight: 0.6,
@@ -273,7 +285,7 @@ export function EquipmentPage({
       name: item.name,
       category: item.category,
       price: item.price,
-      image: item.image,
+      image: item.photos?.[0] ?? "",
       startDate: format(dateRange.from, "dd/MM/yyyy", { locale: fr }),
       endDate: format(dateRange.to, "dd/MM/yyyy", { locale: fr }),
       days,
@@ -338,7 +350,7 @@ export function EquipmentPage({
           >
             <div className="aspect-square overflow-hidden bg-gray-100 relative">
               <img
-                src={item.image}
+                src={item.photos?.[0] ?? ""}
                 alt={item.name}
                 className="w-full h-full object-cover hover:scale-105 transition-transform"
               />
@@ -462,7 +474,7 @@ export function EquipmentPage({
               <div className="space-y-4">
                 <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
                   <img
-                    src={selectedEquipment.image}
+                    src={selectedEquipment.photos?.[0] ?? ""}
                     alt={selectedEquipment.name}
                     className="w-full h-full object-cover"
                   />
