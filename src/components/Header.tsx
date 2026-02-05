@@ -1,7 +1,7 @@
-import { Menu, X, ShoppingCart, User } from 'lucide-react';
-import { useState } from 'react';
-import { Button } from './ui/button';
-import type { Page } from '../App';
+import { Menu, X, ShoppingCart } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
+import type { Page } from "../App";
 
 interface HeaderProps {
   currentPage: Page;
@@ -10,13 +10,18 @@ interface HeaderProps {
   onCartOpen: () => void;
 }
 
-export function Header({ currentPage, onNavigate, cartItemsCount, onCartOpen }: HeaderProps) {
+export function Header({
+  currentPage,
+  onNavigate,
+  cartItemsCount,
+  onCartOpen,
+}: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'equipment' as Page, label: 'Équipement' },
-    { id: 'help' as Page, label: 'Aide & Informations' },
-    { id: 'reviews' as Page, label: 'Avis des utilisateurs' },
+    { id: "equipment" as Page, label: "Équipement" },
+    { id: "help" as Page, label: "Aide & Informations" },
+    { id: "reviews" as Page, label: "Avis des utilisateurs" },
   ];
 
   return (
@@ -24,8 +29,8 @@ export function Header({ currentPage, onNavigate, cartItemsCount, onCartOpen }: 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <button 
-            onClick={() => onNavigate('home')}
+          <button
+            onClick={() => onNavigate("home")}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
@@ -44,8 +49,8 @@ export function Header({ currentPage, onNavigate, cartItemsCount, onCartOpen }: 
                 onClick={() => onNavigate(item.id)}
                 className={`px-3 py-2 rounded-md transition-colors ${
                   currentPage === item.id
-                    ? 'text-emerald-600 bg-emerald-50'
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50'
+                    ? "text-emerald-600 bg-emerald-50"
+                    : "text-gray-700 hover:text-emerald-600 hover:bg-gray-50"
                 }`}
               >
                 {item.label}
@@ -67,15 +72,6 @@ export function Header({ currentPage, onNavigate, cartItemsCount, onCartOpen }: 
                   {cartItemsCount}
                 </span>
               )}
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onNavigate('account')}
-              className={currentPage === 'account' ? 'bg-emerald-50 text-emerald-600' : ''}
-            >
-              <User className="h-5 w-5" />
             </Button>
 
             {/* Mobile menu button */}
@@ -106,8 +102,8 @@ export function Header({ currentPage, onNavigate, cartItemsCount, onCartOpen }: 
                 }}
                 className={`block w-full text-left px-4 py-3 rounded-md transition-colors ${
                   currentPage === item.id
-                    ? 'text-emerald-600 bg-emerald-50'
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-gray-50'
+                    ? "text-emerald-600 bg-emerald-50"
+                    : "text-gray-700 hover:text-emerald-600 hover:bg-gray-50"
                 }`}
               >
                 {item.label}
