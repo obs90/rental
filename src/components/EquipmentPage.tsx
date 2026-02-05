@@ -300,28 +300,34 @@ export function EquipmentPage({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl mb-2">Équipement de randonnée</h1>
+        <h1 className="text-4xl font-bold mb-2">Équipement de randonnée</h1>
         <p className="text-gray-600">
-          Parcourez notre sélection d'équipements de qualité
+          Parcourez notre sélection d'équipements de qualité (
+          {filteredItems.length} articles trouvés)
         </p>
       </div>
 
-      {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {categories.map((category) => (
-          <Button
-            key={category.id}
-            variant={selectedCategory === category.id ? "default" : "outline"}
-            onClick={() => onCategoryChange(category.id)}
-            className={
-              selectedCategory === category.id
-                ? "bg-emerald-600 hover:bg-emerald-700"
-                : ""
-            }
-          >
-            {category.name}
-          </Button>
-        ))}
+      {/* Category Filter - Equipment Type Filter */}
+      <div className="bg-white rounded-lg p-6 mb-8 shadow-sm border border-gray-200">
+        <h3 className="text-lg font-semibold mb-4">
+          Filtrer par type de matériel
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? "default" : "outline"}
+              onClick={() => onCategoryChange(category.id)}
+              className={
+                selectedCategory === category.id
+                  ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+                  : "bg-white text-gray-700 hover:bg-gray-100"
+              }
+            >
+              {category.name}
+            </Button>
+          ))}
+        </div>
       </div>
 
       {/* Equipment Grid */}
